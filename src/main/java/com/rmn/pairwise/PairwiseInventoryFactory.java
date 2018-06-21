@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class PairwiseInventoryFactory {
     private static Logger log = LoggerFactory.getLogger(PairwiseInventoryFactory.class);
@@ -55,6 +56,32 @@ public class PairwiseInventoryFactory {
         inventory.setScenario(scenario);
         inventory.buildMolecules();
         return inventory;
+    }
+
+    public static IInventory generateParameterInventory(Map<String, List<String>> inputData) {
+        Scenario scenario = new Scenario();
+        inputData.forEach((key, value) -> scenario.addParameterSet(processOneParameter(key,value)));
+        IInventory inventory = new PairwiseInventory();
+        inventory.setScenario(scenario);
+        inventory.buildMolecules();
+        return inventory;
+    }
+
+    public static IInventory generateParameterInventory(Map<String, List<String>> inputData, List<Condition> conditions) {
+        Scenario scenario = new Scenario();
+        inputData.forEach((key, value) -> scenario.addParameterSet(processOneParameter(key,value)));
+        IInventory inventory = new PairwiseInventory();
+        inventory.setScenario(scenario);
+        inventory.setConditions(conditions);
+        inventory.buildMolecules();
+        return inventory;
+    }
+
+    private static ParameterSet<String> processOneParameter(String name, List<String> values){
+        log.debug("Processing parameter: {} : {}",name,values);
+        ParameterSet<String> parameterSet = new ParameterSet<>(values);
+        parameterSet.setName(name);
+        return parameterSet;
     }
 
     /**

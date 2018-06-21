@@ -66,4 +66,12 @@ public interface IInventory {
     Scenario getScenario();
 
     void setAtomsPerMolecule(int atoms);
+
+    /**
+     * TODO
+     * @return
+     */
+
+    List<Condition> getConditions();
+    public abstract void setConditions(List<Condition> conditions);
 }
