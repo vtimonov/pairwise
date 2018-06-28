@@ -3,7 +3,7 @@
 
     <groupId>com.retailmenot</groupId>
     <artifactId>pairwise</artifactId>
-    <version>0.8.2-SNAPSHOT</version>
+    <version>0.8.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>

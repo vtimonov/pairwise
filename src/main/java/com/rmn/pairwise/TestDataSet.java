@@ -88,12 +88,15 @@ public class TestDataSet {
             String parameterTwo = condition.getNameTwo();
             String valueTwo = condition.getValueTwo();
             int conditionType = condition.getCondition();
-            if (singleTestSet.get(parameterOne).equals(valueOne)) {
-                // 0 = cannot exist with, 1 can exist only with
-                if (conditionType == 0) {
-                    return !singleTestSet.get(parameterTwo).equals(valueTwo);
-                } else if (conditionType == 1) {
-                    return singleTestSet.get(parameterTwo).equals(valueTwo);
+            // TODO fix 3 ifs in cycle
+            if (singleTestSet.containsKey(parameterOne)) {
+                if (singleTestSet.get(parameterOne).equals(valueOne)) {
+                    // 0 = cannot exist with, 1 can exist only with
+                    if (conditionType == 0) {
+                        return !singleTestSet.get(parameterTwo).equals(valueTwo);
+                    } else if (conditionType == 1) {
+                        return singleTestSet.get(parameterTwo).equals(valueTwo);
+                    }
                 }
             }
         }
